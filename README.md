@@ -4,7 +4,7 @@
 
 作者：**Dr. Dezeming**
 
-[在线阅读](/#/book/chapters/ch01)　[下载 PDF](output/from-lssl-to-mamba3.pdf)
+[开始阅读](book/chapters/ch01.md)　[下载 PDF](output/from-lssl-to-mamba3.pdf)
 
 ---
 
