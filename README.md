@@ -1,10 +1,10 @@
 # 从 LSSL 到 Mamba-3
 
-## 状态空间模型笔记
+## 状态空间模型的理论、算法与实现
 
 作者：**Dr. Dezeming**
 
-[开始阅读](book/chapters/ch01.md)　[下载 PDF](output/from-lssl-to-mamba3.pdf)
+[开始阅读](book/chapters/ch01.md)　[前言](book/front/preface.md)　[下载 PDF](output/from-lssl-to-mamba3.pdf)
 
 ---
 

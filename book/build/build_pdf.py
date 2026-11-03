@@ -36,7 +36,7 @@ OUT_DIR = ROOT / "output"
 VENDOR = BUILD / "vendor"
 
 TITLE = "从 LSSL 到 Mamba-3"
-SUBTITLE = "状态空间模型笔记"
+SUBTITLE = "状态空间模型的理论、算法与实现"
 AUTHOR = "Dr. Dezeming"
 VERSION = "2026 年 11 月"
 
@@ -355,7 +355,7 @@ def cover_html() -> str:
   <div class="inner">
     <div class="kicker">STATE SPACE MODELS</div>
     <h1>{TITLE}</h1>
-    <p class="sub">{SUBTITLE}：从 HiPPO 到 Mamba-3</p>
+    <p class="sub">{SUBTITLE}</p>
   </div>
   <div class="foot">
     <div class="author">{AUTHOR}</div>
@@ -530,7 +530,8 @@ def stamp(pdf_path: Path, page_map: dict[str, int], chapter_titles: dict[str, st
     back_start = page_map.get("BACK", 10**9)
     end_start = page_map.get("END", 10**9)
     starts = sorted((k, v) for k, v in page_map.items() if k not in ("BACK", "END"))
-    first_body = starts[0][1] if starts else 1
+    body_pages = [v for k, v in page_map.items() if k not in ("PRE", "BACK", "END")]
+    first_body = min(body_pages) if body_pages else 1
     font = r"C:\Windows\Fonts\simhei.ttf"
     grey = (0.55, 0.55, 0.55)
     grey2 = (0.45, 0.45, 0.45)
@@ -585,7 +586,7 @@ def main() -> None:
     node = find_node()
 
     # 目录条目
-    entries = []
+    entries = [("chapter", "前言", "PRE")]
     for part_file, part_title, chapters in PARTS:
         entries.append(("part", part_title, part_file))
         for ch in chapters:
@@ -616,13 +617,15 @@ def main() -> None:
         chunks.append(("chapter", (ch, title, body)))
         entries.append(("chapter", title, ch))
         print("[ok]", ch)
+    entries.append(("chapter", "后记", "BACK"))
 
     # 前辅文
     front_parts = [titlepage_html()]
     for f in FRONT[1:]:
         _, body = convert(BOOK / "front" / f, node, drop_h1=True)
         cls = "colophon" if f == "copyright.md" else ""
-        front_parts.append(f'<section class="{cls} page-break">{body}</section>')
+        mk = '<span class="chmark">CHMARKPRE</span>' if f == "preface.md" else ""
+        front_parts.append(f'<section class="{cls} page-break">{mk}{body}</section>')
     front_html = "".join(front_parts)
 
     # 后辅文
@@ -645,7 +648,7 @@ def main() -> None:
     print("[..] pass 1")
     print_pdf(html_path, tmp, find_chrome())
 
-    keys = [k for kind, _, k in entries if kind == "chapter"] + ["BACK", "END"]
+    keys = [k for kind, _, k in entries if kind == "chapter"] + ["END"]
     page_map = locate(tmp, keys)
     html_doc = assemble(chunks, front_html, toc_html(entries, page_map), marks=False, back_html=back_body)
     html_path.write_text(html_doc, encoding="utf-8")
@@ -660,6 +663,7 @@ def main() -> None:
         if kind == "chapter":
             titles[payload[0]] = payload[1]
     titles["BACK"] = "后记"
+    titles["PRE"] = "前言"
     stamp(out, page_map, titles)
 
     import pymupdf
