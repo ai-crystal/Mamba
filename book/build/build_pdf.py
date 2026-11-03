@@ -288,6 +288,8 @@ blockquote { margin: 3mm 0; padding: 2mm 4mm; border-left: 2.2pt solid #bbb;
 .book-figure { margin: 6mm 0 5mm; text-align: center; page-break-inside: avoid; }
 .book-figure img { width: 100%; height: auto; }
 .book-figure figcaption { font-size: 8.8pt; color: #444; margin-top: 2mm; text-indent: 0; }
+.book-figure + p { text-align: center; text-indent: 0; font-size: 8.8pt;
+  color: #444; margin: -3mm 0 4mm; }
 
 hr { border: none; border-top: .6pt solid #ddd; margin: 6mm 0; }
 .katex-display { margin: 3mm 0; overflow: hidden; page-break-inside: avoid;
