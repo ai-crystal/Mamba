@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>从 LSSL 到 Mamba-3 · 状态空间模型笔记</title>
+  <meta name="description" content="从 HiPPO、LSSL、S4、S5 到 Mamba、Mamba-2、Mamba-3 的状态空间模型笔记。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="assets/vue.css">
+  <link rel="stylesheet" href="assets/katex.min.css">
+  <style>
+    :root { --theme-color: #2f5d8a; }
+    .sidebar { width: 300px; }
+    body { -webkit-font-smoothing: antialiased; }
+    .markdown-section { max-width: 860px; padding: 24px 32px 80px; }
+    .markdown-section h1 { font-size: 1.9rem; }
+    .markdown-section h2 { font-size: 1.45rem; margin-top: 2em; }
+    .markdown-section p { line-height: 1.85; }
+    .markdown-section img { max-width: 100%; }
+    .markdown-section table { font-size: .9rem; }
+    .markdown-section .katex-display { overflow-x: auto; overflow-y: hidden; }
+    .sidebar-nav li { margin: 2px 0; }
+    .sidebar-nav > ul > li > p { font-weight: 700; margin: 14px 0 4px; }
+    .cover {
+      position: relative;
+      background: linear-gradient(rgba(8,14,28,.72), rgba(8,14,28,.78)),
+                  url(book/images/cover.jpg) center/cover no-repeat !important;
+      min-height: 100vh;
+    }
+    .cover-main, .cover-main * { color: #fff !important; text-align: center; }
+    .cover-main h1 { text-shadow: 0 2px 22px rgba(0,0,0,.55); }
+    .cover .cover-main > h1, .cover .cover-main > h1 > a {
+      color: #fff !important; opacity: 1 !important; font-size: 3rem;
+      letter-spacing: .04em; border-bottom: none; margin-bottom: .4em;
+      text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+    .cover-main p { color: #dce6f8; }
+    .cover-main p a {
+      display: inline-block; margin: 8px 6px; padding: 10px 24px;
+      border: 1px solid rgba(255,255,255,.85); border-radius: 24px;
+      color: #fff !important; text-decoration: none; font-size: .95rem;
+    }
+    .cover-main p a:hover { background: #fff; color: #12203a !important; }
+    .cover-main > p:last-child { max-width: 640px; margin: 26px auto 0;
+      color: #cfdcf4; font-size: .98rem; line-height: 1.8; }
+    @media (max-width: 768px) { .markdown-section { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div id="app">加载中……</div>
+  <script>
+    window.$docsify = {
+      name: '从 LSSL 到 Mamba-3',
+      repo: '',
+      loadSidebar: true,
+      coverpage: true,
+      subMaxLevel: 1,
+      maxLevel: 4,
+      auto2top: true,
+      hash: true,
+      homepage: 'README.md',
+      notFoundPage: false,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '搜索',
+        noData: '没有找到结果',
+        depth: 4
+      },
+      pagination: {
+        previousText: '上一章',
+        nextText: '下一章',
+        crossChapter: true,
+        crossChapterText: true
+      },
+      copyCode: { buttonText: '复制', errorText: '失败', successText: '已复制' },
+      katex: {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        throwOnError: false
+      },
+      mermaid: { theme: 'default' },
+      plugins: [
+        function (hook) {
+          hook.doneEach(function () {
+            const h1 = document.querySelector('.markdown-section h1');
+            if (h1) document.title = h1.textContent + ' · 从 LSSL 到 Mamba-3';
+          });
+        }
+      ]
+    };
+  </script>
+  <script src="assets/docsify.min.js"></script>
+  <script src="assets/search.min.js"></script>
+  <script src="assets/docsify-pagination.min.js"></script>
+  <script src="assets/docsify-copy-code.min.js"></script>
+  <script src="assets/docsify-katex.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</body>
+</html>

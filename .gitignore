@@ -1,0 +1,19 @@
+# 依赖与本地资料，不进仓库
+_private/
+papers/
+node_modules/
+__pycache__/
+*.pyc
+
+# 构建中间产物
+book/build/out/
+book/build/vendor/
+book/build/*.tmp
+book/build/*.log
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
