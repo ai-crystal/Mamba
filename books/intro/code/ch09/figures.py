@@ -21,7 +21,8 @@ def fig_selection():
            width=0.72)
     ax.set_ylim(0, 1.35)
     ax.set_yticks([])
-    ax.set_ylabel("输入", fontsize=8)
+    ax.text(0.01, 0.90, "输入", transform=ax.transAxes, fontsize=8,
+            color=MUTED, va="top")
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
     ax.tick_params(labelsize=7)
@@ -37,13 +38,12 @@ def fig_selection():
     ax.set_ylim(0, 1.25)
     ax.set_yticks([])
     ax.set_xlabel("位置", fontsize=8)
-    ax.set_ylabel("写入状态的量", fontsize=8)
     ax.legend(fontsize=7, frameon=False, ncol=2, loc="upper left")
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
     ax.tick_params(labelsize=7)
 
-    fig.subplots_adjust(hspace=0.18, left=0.13, right=0.98)
+    fig.subplots_adjust(hspace=0.22, left=0.06, right=0.98)
     save(fig, "fig04-selection.svg")
 
 
