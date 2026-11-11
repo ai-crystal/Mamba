@@ -16,18 +16,30 @@ if not defined PY (
   exit /b 1
 )
 
-echo [1/2] 生成插图 ...
-%PY% "book\code\make_all.py"
+echo [1/4] 生成入门版插图 ...
+%PY% "books\intro\code\make_all.py"
 if errorlevel 1 goto :err
-%PY% "book\code\make_covers.py"
+%PY% "books\intro\code\make_covers.py"
 if errorlevel 1 goto :err
 
-echo [2/2] 排版并输出 PDF ...
-%PY% "book\build\build_pdf.py"
+echo [2/4] 生成专业版插图 ...
+%PY% "books\pro\code\make_all.py"
+if errorlevel 1 goto :err
+%PY% "books\pro\code\make_covers.py"
+if errorlevel 1 goto :err
+
+echo [3/4] 排版入门版 ...
+%PY% "books\build\build_pdf.py" --book intro
+if errorlevel 1 goto :err
+
+echo [4/4] 排版专业版 ...
+%PY% "books\build\build_pdf.py" --book pro
 if errorlevel 1 goto :err
 
 echo.
-echo 完成：output\from-lssl-to-mamba3.pdf
+echo 完成：
+echo   output\mamba-intro.pdf
+echo   output\from-lssl-to-mamba3.pdf
 pause
 exit /b 0
 

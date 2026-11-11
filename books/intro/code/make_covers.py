@@ -4,7 +4,7 @@ from pathlib import Path
 
 from PIL import Image, ImageEnhance
 
-SRC = Path(r"E:/Study/logo")
+SRC = Path(r"E:/Study/0-logo")
 OUT = Path(__file__).resolve().parent.parent / "images"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -34,5 +34,5 @@ def make(src: str, dst: str, ratio: float = A4[1] / A4[0]) -> None:
 
 
 if __name__ == "__main__":
-    make("logo1.png", "cover.jpg")
-    make("logo13.png", "backcover.jpg")
+    make("logo15.png", "cover.jpg")
+    make("logo8.png", "backcover.jpg")

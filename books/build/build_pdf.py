@@ -29,41 +29,81 @@ import time
 from pathlib import Path
 from urllib.request import urlopen
 
-BOOK = Path(__file__).resolve().parent.parent
-ROOT = BOOK.parent
-BUILD = BOOK / "build"
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
+VENDOR = HERE / "vendor"
 OUT_DIR = ROOT / "output"
-VENDOR = BUILD / "vendor"
 
-TITLE = "从 LSSL 到 Mamba-3"
-SUBTITLE = "状态空间模型的理论、算法与实现"
 AUTHOR = "Dr. Dezeming"
 VERSION = "2026 年 11 月"
 
-# 篇 -> 章
-PARTS = [
-    ("part1.md", "第一篇　背景：序列模型的三难与连续时间系统",
-     ["ch01.md", "ch02.md", "ch03.md"]),
-    ("part2.md", "第二篇　记忆：HiPPO",
-     ["ch04.md", "ch05.md", "ch06.md"]),
-    ("part3.md", "第三篇　LSSL：一个统一的序列层",
-     ["ch07.md", "ch08.md", "ch09.md"]),
-    ("part4.md", "第四篇　S4：让状态空间可计算",
-     ["ch10.md", "ch11.md", "ch12.md", "ch13.md", "ch14.md"]),
-    ("part5.md", "第五篇　S5 及其时代",
-     ["ch15.md", "ch16.md"]),
-    ("part6.md", "第六篇　Mamba：选择性",
-     ["ch17.md", "ch18.md", "ch19.md", "ch20.md", "ch21.md"]),
-    ("part7.md", "第七篇　Mamba-2：状态空间对偶",
-     ["ch22.md", "ch23.md", "ch24.md", "ch25.md", "ch26.md", "ch27.md"]),
-    ("part8.md", "第八篇　Mamba-3：推理优先",
-     ["ch28.md", "ch29.md", "ch30.md", "ch31.md", "ch32.md"]),
-    ("part9.md", "第九篇　实践与收尾",
-     ["ch33.md", "ch34.md", "ch35.md"]),
-]
-APPENDIX = ("appendix.md", "附录", ["appA.md", "appB.md", "appC.md"])
-FRONT = ["title.md", "copyright.md", "preface.md"]
-BACK = ["afterword.md"]
+BOOKS = {
+    "pro": {
+        "dir": "pro",
+        "title": "从 LSSL 到 Mamba-3",
+        "edition": "专业版",
+        "subtitle": "状态空间模型的理论、算法与实现",
+        "out": "from-lssl-to-mamba3.pdf",
+        "front": ["title.md", "copyright.md", "preface.md"],
+        "back": ["afterword.md"],
+        "cover": "cover.jpg",
+        "backcover": "backcover.jpg",
+        "parts": [
+            ("part1.md", "第一篇　背景：序列模型的三难与连续时间系统",
+             ["ch01.md", "ch02.md", "ch03.md"]),
+            ("part2.md", "第二篇　记忆：HiPPO",
+             ["ch04.md", "ch05.md", "ch06.md"]),
+            ("part3.md", "第三篇　LSSL：一个统一的序列层",
+             ["ch07.md", "ch08.md", "ch09.md"]),
+            ("part4.md", "第四篇　S4：让状态空间可计算",
+             ["ch10.md", "ch11.md", "ch12.md", "ch13.md", "ch14.md"]),
+            ("part5.md", "第五篇　S5 及其时代",
+             ["ch15.md", "ch16.md"]),
+            ("part6.md", "第六篇　Mamba：选择性",
+             ["ch17.md", "ch18.md", "ch19.md", "ch20.md", "ch21.md"]),
+            ("part7.md", "第七篇　Mamba-2：状态空间对偶",
+             ["ch22.md", "ch23.md", "ch24.md", "ch25.md", "ch26.md", "ch27.md"]),
+            ("part8.md", "第八篇　Mamba-3：推理优先",
+             ["ch28.md", "ch29.md", "ch30.md", "ch31.md", "ch32.md"]),
+            ("part9.md", "第九篇　实践与收尾",
+             ["ch33.md", "ch34.md", "ch35.md"]),
+        ],
+        "appendix": ("appendix.md", "附录", ["appA.md", "appB.md", "appC.md"]),
+    },
+    "intro": {
+        "dir": "intro",
+        "title": "从 LSSL 到 Mamba-3",
+        "edition": "入门版",
+        "subtitle": "状态空间模型的故事与直觉",
+        "out": "mamba-intro.pdf",
+        "front": ["title.md", "copyright.md", "preface.md"],
+        "back": ["afterword.md"],
+        "cover": "cover.jpg",
+        "backcover": "backcover.jpg",
+        "parts": [
+            ("part1.md", "第一篇　问题", ["ch01.md", "ch02.md", "ch03.md"]),
+            ("part2.md", "第二篇　一个大胆的想法",
+             ["ch04.md", "ch05.md", "ch06.md", "ch07.md"]),
+            ("part3.md", "第三篇　学会选择",
+             ["ch08.md", "ch09.md", "ch10.md", "ch11.md", "ch12.md"]),
+            ("part4.md", "第四篇　今天与明天", ["ch13.md", "ch14.md"]),
+        ],
+        "appendix": None,
+    },
+}
+
+# 当前构建的书，main() 里赋值
+BOOK = ROOT / "books" / "pro"
+TITLE = ""
+EDITION = ""
+SUBTITLE = ""
+PARTS = []
+APPENDIX = None
+FRONT = []
+BACK = []
+COVER_IMG = "cover.jpg"
+BACK_IMG = "backcover.jpg"
+OUT_NAME = ""
 
 CHROME_CANDIDATES = [
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
@@ -150,7 +190,7 @@ def extract_math(text: str, store: list) -> str:
 
 def render_math(items, node: str) -> list[str]:
     payload = json.dumps({"items": [{"tex": t, "display": d} for t, d in items]})
-    proc = subprocess.run([node, str(BUILD / "math_render.js")],
+    proc = subprocess.run([node, str(HERE / "math_render.js")],
                           input=payload.encode("utf-8"),
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if proc.returncode != 0:
@@ -309,12 +349,15 @@ hr { border: none; border-top: .6pt solid #ddd; margin: 6mm 0; }
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
 }
 .veil { position: absolute; inset: 0; }
-.cover .veil { background: linear-gradient(180deg, rgba(6,12,28,.78) 0%,
-  rgba(6,12,28,.15) 38%, rgba(6,12,28,.10) 62%, rgba(6,12,28,.86) 100%); }
+.cover .veil { background: linear-gradient(180deg, rgba(6,12,28,.93) 0%,
+  rgba(6,12,28,.82) 20%, rgba(6,12,28,.44) 34%, rgba(6,12,28,.12) 62%,
+  rgba(6,12,28,.88) 100%); }
 .cover .inner { position: absolute; left: 22mm; right: 22mm; top: 34mm; }
 .cover .kicker { font-size: 10pt; letter-spacing: 3pt; color: #cfe0ff; margin-bottom: 8mm; }
-.cover h1 { font-size: 38pt; line-height: 1.22; margin: 0 0 7mm; color: #fff; }
-.cover .sub { font-size: 15pt; color: #dbe6ff; margin: 0; }
+.cover h1 { font-size: 38pt; line-height: 1.22; margin: 0 0 7mm; color: #fff;
+  text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+.cover .sub { font-size: 15pt; color: #eaf1ff; margin: 0;
+  text-shadow: 0 2px 14px rgba(0,0,0,.6); }
 .cover .foot { position: absolute; left: 22mm; right: 22mm; bottom: 24mm; }
 .cover .author { font-size: 12pt; color: #eaf0ff; }
 .cover .meta { font-size: 9pt; color: #9fb3d9; margin-top: 2mm; }
@@ -329,6 +372,8 @@ hr { border: none; border-top: .6pt solid #ddd; margin: 6mm 0; }
 .titlepage { page-break-after: always; padding-top: 55mm; text-align: center; }
 .titlepage h1 { font-size: 30pt; margin: 0 0 6mm; letter-spacing: 1pt; }
 .titlepage .sub { font-size: 14pt; color: #444; margin: 0 0 30mm; }
+.titlepage .edition { font-size: 10.5pt; color: #666; margin: 0 0 22mm;
+  letter-spacing: .18em; }
 .titlepage .author { font-size: 12pt; color: #222; }
 .colophon { page-break-after: always; font-size: 9.5pt; color: #333; }
 .colophon h2 { font-size: 13pt; border: none; margin-top: 0; }
@@ -347,13 +392,13 @@ hr { border: none; border-top: .6pt solid #ddd; margin: 6mm 0; }
 
 
 def cover_html() -> str:
-    img = (BOOK / "images" / "cover.jpg").as_posix()
+    img = (BOOK / "images" / COVER_IMG).as_posix()
     return f"""
 <section class="cover">
   <img class="bg" src="file:///{img}" alt="">
   <div class="veil"></div>
   <div class="inner">
-    <div class="kicker">STATE SPACE MODELS</div>
+    <div class="kicker">STATE SPACE MODELS · {EDITION}</div>
     <h1>{TITLE}</h1>
     <p class="sub">{SUBTITLE}</p>
   </div>
@@ -366,7 +411,7 @@ def cover_html() -> str:
 
 
 def backcover_html(marks: bool = True) -> str:
-    img = (BOOK / "images" / "backcover.jpg").as_posix()
+    img = (BOOK / "images" / BACK_IMG).as_posix()
     mark_end = '<span class="chmark">CHMARKEND</span>' if marks else ""
     return f"""
 <section class="backcover">{mark_end}
@@ -387,6 +432,7 @@ def titlepage_html() -> str:
 <section class="titlepage">
   <h1>{TITLE}</h1>
   <p class="sub">{SUBTITLE}</p>
+  <p class="edition">{EDITION}</p>
   <p class="author">{AUTHOR}</p>
 </section>
 """
@@ -570,11 +616,30 @@ def stamp(pdf_path: Path, page_map: dict[str, int], chapter_titles: dict[str, st
 
 # ------------------------------------------------------------------ 主流程
 def main() -> None:
+    global BOOK, TITLE, EDITION, SUBTITLE, PARTS, APPENDIX, FRONT, BACK
+    global COVER_IMG, BACK_IMG, OUT_NAME
+
     ap = argparse.ArgumentParser()
+    ap.add_argument("--book", default="pro", choices=sorted(BOOKS))
     ap.add_argument("--figures", action="store_true")
     ap.add_argument("--html", action="store_true")
-    ap.add_argument("--out", default=str(OUT_DIR / "from-lssl-to-mamba3.pdf"))
+    ap.add_argument("--out", default=None)
     args = ap.parse_args()
+
+    cfg = BOOKS[args.book]
+    BOOK = ROOT / "books" / cfg["dir"]
+    TITLE = cfg["title"]
+    EDITION = cfg["edition"]
+    SUBTITLE = cfg["subtitle"]
+    PARTS = cfg["parts"]
+    APPENDIX = cfg["appendix"]
+    FRONT = cfg["front"]
+    BACK = cfg["back"]
+    COVER_IMG = cfg["cover"]
+    BACK_IMG = cfg["backcover"]
+    OUT_NAME = cfg["out"]
+
+    print(f"[..] 构建《{TITLE}》{EDITION}")
 
     if args.figures:
         import runpy
@@ -606,17 +671,18 @@ def main() -> None:
             chunks.append(("chapter", (ch, title, body)))
             print("[ok]", ch)
 
-    # 附录
-    app_file, app_title, app_chaps = APPENDIX
-    entries.append(("part", app_title, app_file))
-    chunks.append(("part", (app_title, "")))
-    for ch in app_chaps:
-        raw = (BOOK / "appendix" / ch).read_text(encoding="utf-8")
-        title = re.search(r"^#\s+(.+)$", raw, re.M).group(1).strip()
-        _, body = convert(BOOK / "appendix" / ch, node, drop_h1=True)
-        chunks.append(("chapter", (ch, title, body)))
-        entries.append(("chapter", title, ch))
-        print("[ok]", ch)
+    # 附录（可选）
+    if APPENDIX:
+        app_file, app_title, app_chaps = APPENDIX
+        entries.append(("part", app_title, app_file))
+        chunks.append(("part", (app_title, "")))
+        for ch in app_chaps:
+            raw = (BOOK / "appendix" / ch).read_text(encoding="utf-8")
+            title = re.search(r"^#\s+(.+)$", raw, re.M).group(1).strip()
+            _, body = convert(BOOK / "appendix" / ch, node, drop_h1=True)
+            chunks.append(("chapter", (ch, title, body)))
+            entries.append(("chapter", title, ch))
+            print("[ok]", ch)
     entries.append(("chapter", "后记", "BACK"))
 
     # 前辅文
@@ -636,7 +702,7 @@ def main() -> None:
         back_body += ("<section class=\"page-break\">" + mk + body + "</section>")
 
     html_doc = assemble(chunks, front_html, toc_html(entries, None), back_html=back_body)
-    html_path = BUILD / "out" / "book.html"
+    html_path = HERE / "out" / f"{args.book}.html"
     html_path.parent.mkdir(parents=True, exist_ok=True)
     html_path.write_text(html_doc, encoding="utf-8")
     print("[ok] html")
@@ -644,7 +710,7 @@ def main() -> None:
     if args.html:
         return
 
-    tmp = BUILD / "out" / "_pass1.pdf"
+    tmp = HERE / "out" / f"_{args.book}.pdf"
     print("[..] pass 1")
     print_pdf(html_path, tmp, find_chrome())
 
@@ -654,7 +720,7 @@ def main() -> None:
     html_path.write_text(html_doc, encoding="utf-8")
 
     print("[..] pass 2")
-    out = Path(args.out)
+    out = Path(args.out) if args.out else (OUT_DIR / OUT_NAME)
     print_pdf(html_path, out, find_chrome())
     tmp.unlink(missing_ok=True)
 

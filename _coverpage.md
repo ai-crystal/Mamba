@@ -1,9 +1,9 @@
 # 从 LSSL 到 Mamba-3
 
-**状态空间模型的理论、算法与实现**
+一套讲状态空间模型的书，分两本。入门版讲动机、直觉与结论，专业版讲推导、算法与实现。
 
-作者：Dr. Dezeming
+[入门版](/#/books/intro/chapters/ch01) [专业版](/#/books/pro/chapters/ch01)
 
-[开始阅读](/#/book/chapters/ch01) [下载 PDF](output/from-lssl-to-mamba3.pdf ':ignore')
+[入门版 PDF](output/mamba-intro.pdf ':ignore') [专业版 PDF](output/from-lssl-to-mamba3.pdf ':ignore')
 
-从 HiPPO、LSSL、S4、S5 一路走到 Mamba、Mamba-2 与 Mamba-3。序列建模的核心问题只有一个，怎样用有限的存储记住任意长的历史。
+> 序列建模的核心问题只有一个，怎样用有限的存储记住任意长的历史。
