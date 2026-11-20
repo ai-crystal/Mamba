@@ -46,6 +46,6 @@
 
 ## 下载
 
-[PDF（41 页，6.3 MB）](output/mamba-intro.pdf ':ignore')
+[PDF（41 页，6.3 MB）](output/state-space-models-intro.pdf ':ignore')
 
 [网页版阅读](https://ai-crystal.github.io/Mamba/#/books/intro/README)　｜　[返回系列首页](README.md)

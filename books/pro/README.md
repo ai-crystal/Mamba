@@ -88,6 +88,6 @@
 
 ## 下载
 
-[PDF（363 页，15.6 MB）](output/from-lssl-to-mamba3.pdf ':ignore')
+[PDF（363 页，15.6 MB）](output/state-space-models-pro.pdf ':ignore')
 
 [网页版阅读](https://ai-crystal.github.io/Mamba/#/books/pro/README)　｜　[返回系列首页](README.md)

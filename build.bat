@@ -32,7 +32,7 @@ if errorlevel 1 goto :err
 call :book pro
 if errorlevel 1 goto :err
 echo.
-echo Done: output\mamba-intro.pdf  output\from-lssl-to-mamba3.pdf
+echo Done. PDF is in output\
 pause
 exit /b 0
 
@@ -40,7 +40,7 @@ exit /b 0
 call :book intro
 if errorlevel 1 goto :err
 echo.
-echo Done: output\mamba-intro.pdf
+echo Done. PDF is in output\
 pause
 exit /b 0
 
@@ -48,7 +48,7 @@ exit /b 0
 call :book pro
 if errorlevel 1 goto :err
 echo.
-echo Done: output\from-lssl-to-mamba3.pdf
+echo Done. PDF is in output\
 pause
 exit /b 0
 

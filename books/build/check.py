@@ -384,8 +384,15 @@ def check_pdfs(rep: Report, meta_by_book: dict[str, dict]) -> None:
         heads.discard("")
         if len(heads) < 3 or not any(h.startswith("第") for h in heads):
             rep.err(f"{name}: 页眉没有跟着章节变化（抽查到的只有 {sorted(heads)[:4]}）")
-        row = next((line for line in readme.splitlines() if meta["pdf"] in line), "")
-        m = re.search(r"(\d+)\s*页", row)
+        # 页码写在文件名前面（顶部下载行与表格行都这样写），取紧邻文件名的那个数
+        m = None
+        for line in readme.splitlines():
+            idx = line.find(meta["pdf"])
+            if idx < 0:
+                continue
+            m = re.search(r"(\d+)\s*页", line[max(0, idx - 40):idx]) or m
+            if m:
+                break
         if not m:
             rep.warn(f"{name}: README 里没有标注 {meta['pdf']} 的页数")
         elif int(m.group(1)) != pages:
