@@ -354,8 +354,36 @@ def check_pdfs(rep: Report, meta_by_book: dict[str, dict]) -> None:
             rep.err(f"{name}: PDF 只有 {pages} 页，可能排版失败")
         if toc < 10:
             rep.err(f"{name}: PDF 书签只有 {toc} 条，目录可能没生成")
-        if "Mamba-3" not in title:
+        if "状态空间模型" not in title:
             rep.warn(f"{name}: PDF 元数据标题可疑：{title!r}")
+
+        # 页脚页码：抽查正文页，确认盖上了（曾经因为变量名写错静默漏盖）
+        doc = pymupdf.open(str(pdf))
+        body = list(range(5, max(6, doc.page_count - 2)))
+        if len(body) > 24:
+            step = len(body) / 24
+            body = [body[int(i * step)] for i in range(24)]
+        missing = 0
+        for i in body:
+            page = doc[i]
+            band = pymupdf.Rect(0, page.rect.height - 36, page.rect.width, page.rect.height)
+            if str(i + 1) not in {w[4] for w in page.get_text("words", clip=band)}:
+                missing += 1
+        doc.close()
+        if missing > max(1, len(body) // 12):
+            rep.err(f"{name}: 抽查 {len(body)} 页里有 {missing} 页没有页脚页码")
+
+        # 右侧页眉应当跟着章走刷（曾经因为按 key 字母序排序，全书停在「前言」）
+        doc = pymupdf.open(str(pdf))
+        heads = set()
+        for i in body:
+            page = doc[i]
+            band = pymupdf.Rect(page.rect.width - 320, 15, page.rect.width - 40, 40)
+            heads.add("".join(w[4] for w in page.get_text("words", clip=band)))
+        doc.close()
+        heads.discard("")
+        if len(heads) < 3 or not any(h.startswith("第") for h in heads):
+            rep.err(f"{name}: 页眉没有跟着章节变化（抽查到的只有 {sorted(heads)[:4]}）")
         row = next((line for line in readme.splitlines() if meta["pdf"] in line), "")
         m = re.search(r"(\d+)\s*页", row)
         if not m:

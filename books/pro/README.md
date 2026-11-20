@@ -1,6 +1,6 @@
-# 从 LSSL 到 Mamba-3 · 专业版
+# 状态空间模型 · 专业版
 
-## 状态空间模型的理论、算法与实现
+## 理论、算法与实现
 
 这是系列里的完整版。七个模型逐个拆开讲：动机、推导、算法、实现上的取舍。公式给到能自己复现的程度，实验数字都能追到论文的某一页。
 
@@ -88,6 +88,6 @@
 
 ## 下载
 
-[PDF（363 页，15.5 MB）](output/from-lssl-to-mamba3.pdf ':ignore')
+[PDF（363 页，15.6 MB）](output/from-lssl-to-mamba3.pdf ':ignore')
 
 [网页版阅读](https://ai-crystal.github.io/Mamba/#/books/pro/README)　｜　[返回系列首页](README.md)

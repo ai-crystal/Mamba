@@ -289,7 +289,7 @@ MIMO SSM 可写为 $R^2$ 个共享同一衰减的 SISO SSM：$R$ 个输入 rank 
 7. SSD：$M_{ji}=C_j^{\top}A_j\cdots A_{i+1}B_i$，$Y=(L\circ(QK^{\top}))V$。
 8. Mamba-3：$h_t=\alpha_th_{t-1}+\beta_tB_{t-1}x_{t-1}+\gamma_tB_tx_t$，旋转用 $R(\theta)$。
 
-这八行公式串起来，就是本书从 LSSL 到 Mamba-3 的全部骨架。
+这八行公式串起来，就是从 LSSL 到 Mamba-3 这条线的全部骨架。
 
 ---
 

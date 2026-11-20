@@ -568,7 +568,10 @@ def stamp(pdf_path: Path, page_map: dict[str, int], chapter_titles: dict[str, st
     doc = pymupdf.open(str(pdf_path))
     back_start = page_map.get("BACK", 10**9)
     end_start = page_map.get("END", 10**9)
-    starts = sorted((k, v) for k, v in page_map.items() if k not in ("BACK", "END"))
+    # 按页码排，不能直接 sorted(dict.items())：那样按 key 的字母序，
+    # 有附录时 appA.md 会排到 ch01.md 前面，页眉就会一直停在第一篇之前
+    starts = sorted(((k, v) for k, v in page_map.items() if k not in ("BACK", "END")),
+                    key=lambda kv: kv[1])
     body_pages = [v for k, v in page_map.items() if k not in ("PRE", "BACK", "END")]
     first_body = min(body_pages) if body_pages else 1
     font = r"C:\Windows\Fonts\simhei.ttf"
@@ -590,19 +593,22 @@ def stamp(pdf_path: Path, page_map: dict[str, int], chapter_titles: dict[str, st
                 else:
                     break
         is_start = cur_key in page_map and page_map[cur_key] == pno
-        try:
-            if not is_start and cur:
-                short = cur if len(cur) <= 24 else cur[:23] + "…"
-                page.insert_text((51, 30), TITLE, fontsize=7.5, fontfile=font,
+        if not is_start and cur:
+            short = cur if len(cur) <= 24 else cur[:23] + "…"
+            try:
+                page.insert_text((51, 30), CFG.title, fontsize=7.5, fontfile=font,
                                  fontname="hei", color=grey)
                 page.insert_textbox(pymupdf.Rect(w - 51 - 250, 21, w - 51, 34), short,
                                     fontsize=7, fontfile=font, fontname="hei",
                                     color=grey, align=2)
+            except Exception as exc:  # noqa: BLE001
+                print(f"[!!] 页眉写入失败 p{pno}: {exc}")
+        try:
             page.insert_textbox(pymupdf.Rect(51, h - 30, w - 51, h - 16), str(pno),
                                 fontsize=8.5, fontfile=font, fontname="hei",
                                 color=grey2, align=1)
-        except Exception:
-            pass
+        except Exception as exc:  # noqa: BLE001
+            print(f"[!!] 页码写入失败 p{pno}: {exc}")
     doc.saveIncr()
     doc.close()
 
@@ -749,7 +755,7 @@ def finalize(cfg: Book, out: Path, page_map: dict, titles: dict) -> tuple[int, i
         "title": f"{cfg.title}（{cfg.edition}）",
         "author": cfg.author,
         "subject": cfg.subtitle,
-        "keywords": f"{cfg.title}, {cfg.subtitle}, 状态空间模型, SSM, Mamba",
+        "keywords": f"{cfg.title}, {cfg.subtitle}, SSM, Mamba",
         "creator": "books/build/build_pdf.py",
         "producer": cfg.author,
     })
