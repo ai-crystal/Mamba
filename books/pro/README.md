@@ -90,4 +90,4 @@
 
 [PDF（363 页，15.5 MB）](output/from-lssl-to-mamba3.pdf ':ignore')
 
-[返回系列首页](README.md)
+[网页版阅读](https://ai-crystal.github.io/Mamba/#/books/pro/README)　｜　[返回系列首页](README.md)

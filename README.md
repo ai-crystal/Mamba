@@ -1,16 +1,19 @@
 # 从 LSSL 到 Mamba-3
 
+**在线阅读**：[ai-crystal.github.io/Mamba](https://ai-crystal.github.io/Mamba/)　（带搜索、侧栏与分册导航）
+
 一套讲状态空间模型的书，分两本。两本覆盖同一批模型：HiPPO、LSSL、S4、S5、Mamba、Mamba-2、Mamba-3。入门版讲动机、直觉与结论，专业版讲推导、算法与实现。
 
 | 册 | 讲什么 | 适合谁 | 篇幅 | 在线阅读 | PDF |
 |---|---|---|---|---|---|
-| **入门版**《故事与直觉》 | 动机、直觉、结论，不推公式 | 想先建立整体地图的读者 | 14 章 / 41 页 | [开始阅读](books/intro/chapters/ch01.md) ｜ [目录](books/intro/README.md) | [PDF 6.3 MB](output/mamba-intro.pdf ':ignore') |
-| **专业版**《理论、算法与实现》 | 完整推导、算法细节、可运行代码 | 要做研究或实现的人 | 35 章 / 363 页 | [开始阅读](books/pro/chapters/ch01.md) ｜ [目录](books/pro/README.md) | [PDF 15.5 MB](output/from-lssl-to-mamba3.pdf ':ignore') |
+| **入门版**《故事与直觉》 | 动机、直觉、结论，不推公式 | 想先建立整体地图的读者 | 14 章 / 41 页 | [网页版](https://ai-crystal.github.io/Mamba/#/books/intro/chapters/ch01) ｜ [原文](books/intro/chapters/ch01.md) | [PDF 6.3 MB](output/mamba-intro.pdf ':ignore') |
+| **专业版**《理论、算法与实现》 | 完整推导、算法细节、可运行代码 | 要做研究或实现的人 | 35 章 / 363 页 | [网页版](https://ai-crystal.github.io/Mamba/#/books/pro/chapters/ch01) ｜ [原文](books/pro/chapters/ch01.md) | [PDF 15.5 MB](output/from-lssl-to-mamba3.pdf ':ignore') |
 
 建议先读入门版，再挑感兴趣的章节读专业版。两本各自完整，只读一本也不影响理解。
 
 ## 阅读入口
 
+- [网页版站点](https://ai-crystal.github.io/Mamba/)　— 带搜索、侧栏与分册导航，手机上也能读
 - [入门版前言](books/intro/front/preface.md) ｜ [入门版后记](books/intro/front/afterword.md)
 - [专业版前言](books/pro/front/preface.md) ｜ [专业版后记](books/pro/front/afterword.md)
 - [附录 A　数学工具箱](books/pro/appendix/appA.md) ｜ [附录 B　论文与术语](books/pro/appendix/appB.md) ｜ [附录 C　公式速查](books/pro/appendix/appC.md)

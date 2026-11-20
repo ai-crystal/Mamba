@@ -48,4 +48,4 @@
 
 [PDF（41 页，6.3 MB）](output/mamba-intro.pdf ':ignore')
 
-[返回系列首页](README.md)
+[网页版阅读](https://ai-crystal.github.io/Mamba/#/books/intro/README)　｜　[返回系列首页](README.md)
