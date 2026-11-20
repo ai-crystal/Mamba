@@ -38,7 +38,7 @@ def fig_nplr():
 
     ax.text(3, 22, "$A=A^{(N)}-PP^{\\top}$，其中 $r=1$（HiPPO-LegS）或 $r=2$（LegT / LagT）",
             ha="left", va="top", fontsize=7.6, color=BLUE)
-    save(fig, "fig10-nplr.svg")
+    save(fig, "fig11-01-nplr.svg")
 
 
 FIGURES = ['fig_nplr']

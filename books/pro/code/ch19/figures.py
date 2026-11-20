@@ -43,9 +43,10 @@ def fig_memory():
                 arrowprops=dict(arrowstyle="-|>", color=GREEN, lw=1.0))
     ax.annotate("", xy=(6.8, 8.1), xytext=(6.8, 4.5),
                 arrowprops=dict(arrowstyle="-|>", color=GREEN, lw=1.0))
-    ax.text(3.6, 6.3, "只读参数", fontsize=7, color=GREEN, ha="left")
-    ax.text(6.4, 6.3, r"只写 $(B,L,D)$", fontsize=7, color=GREEN, ha="right")
-    save(fig, "fig13-memory.svg")
+    ax.text(2.85, 6.3, "只读参数", fontsize=6.8, color=GREEN, ha="right", va="center")
+    ax.text(7.15, 6.3, "只写\n$(B,L,D)$", fontsize=6.8, color=GREEN, ha="left", va="center",
+            linespacing=1.5)
+    save(fig, "fig19-01-memory.svg")
 
 
 # ================================================================

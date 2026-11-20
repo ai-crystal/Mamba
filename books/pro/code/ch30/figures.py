@@ -31,7 +31,7 @@ def fig_rope():
                 arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=0.9))
     ax.annotate("", xy=(-1, 0), xytext=(0, 0),
                 arrowprops=dict(arrowstyle="-|>", color=GREEN, lw=0.9))
-    ax.text(-0.95, 0.26, "翻转 180°", fontsize=6.8, color=GREEN)
+    ax.text(-1.18, 0.92, "翻转 180°", fontsize=6.6, color=GREEN, ha="left", va="center")
     ax.set_aspect("equal")
     ax.set_xlim(-1.2, 1.2); ax.set_ylim(-1.2, 1.2)
     ax.axhline(0, color=MUTED, lw=0.5)
@@ -40,7 +40,7 @@ def fig_rope():
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
     fig.subplots_adjust(wspace=0.25)
-    save(fig, "fig21-rope.svg")
+    save(fig, "fig30-01-rope.svg")
 
 
 # ================================================================

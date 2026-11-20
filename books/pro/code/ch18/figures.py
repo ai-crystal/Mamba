@@ -30,7 +30,7 @@ def fig_shapes():
     label(ax, 49, 71, "选择性", fs=7, color=MUTED)
     label(ax, 50, 12, r"同一个模型规模，仅仅因为参数依赖输入，中间张量就膨胀了 $N$ 倍",
           fs=7.4, color=MUTED)
-    save(fig, "fig12-shapes.svg")
+    save(fig, "fig18-01-shapes.svg")
 
 
 # ================================================================

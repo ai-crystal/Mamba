@@ -1,0 +1,17 @@
+{
+  "title": "从 LSSL 到 Mamba-3",
+  "edition": "专业版",
+  "subtitle": "状态空间模型的理论、算法与实现",
+  "series": "STATE SPACE MODELS",
+  "author": "Dr. Dezeming",
+  "year": "2026",
+  "version": "2026 年 11 月",
+  "pdf": "from-lssl-to-mamba3.pdf",
+  "toc_sections": false,
+  "cover": "cover.jpg",
+  "backcover": "backcover.jpg",
+  "blurb": [
+    "从 2020 年的 HiPPO 到 2026 年的 Mamba-3，这条线索试图回答同一个问题：怎样用固定大小的状态压缩任意长的历史，同时保持线性的训练成本。",
+    "书里逐个拆解七个模型的动机、推导与取舍。每一次进步都不是发明了新东西，而是把旧问题换了一个问法，再借来另一个领域已有的工具。"
+  ]
+}

@@ -19,7 +19,7 @@ def fig_picard():
             fc=fc, fs=7.4, ec=BLUE if i % 2 == 0 else ORANGE)
         if i < 4:
             arrow(ax, x + 7.7, 66, xs[i + 1] - 7.7, 66, lw=0.9)
-    label(ax, 50, 44, r"$x_{i+1}(t)=x_i(t_0)+\int_{t_0}^{t} f(s,x_i(s))\,ds$", fs=8.6, color=BLUE)
+    label(ax, 50, 44, r"$x_{i+1}(t)=x_i(t_0)+\int_{t_0}^{t}\, f(s,x_i(s))\,ds$", fs=8.6, color=BLUE)
 
     label(ax, 50, 33, "同一件事，用层数表示", fs=8.4, color=MUTED)
 
@@ -34,7 +34,7 @@ def fig_picard():
 
     label(ax, 50, 1.0, "结论：时间轴上的非线性可以搬到深度方向，换回线性递推的并行性",
           fs=7.4, color=MUTED)
-    save(fig, "fig07-picard.svg")
+    save(fig, "fig08-01-picard.svg")
 
 
 # ================================================================

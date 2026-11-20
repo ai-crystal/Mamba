@@ -41,7 +41,7 @@ def fig_hippo_basis():
     ax.tick_params(labelsize=7)
 
     fig.subplots_adjust(wspace=0.25, bottom=0.26, left=0.10, right=0.97)
-    save(fig, "fig03-hippo.svg")
+    save(fig, "fig04-01-hippo.svg")
 
 
 FIGURES = ["fig_hippo_basis"]

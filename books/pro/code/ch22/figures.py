@@ -19,13 +19,14 @@ def fig_semiseparable():
     ax.imshow(M, cmap="Blues", interpolation="nearest")
     for k in range(0, n, q):
         ax.add_patch(Rectangle((k - 0.5, k - 0.5), q, q, fill=False, ec=ORANGE, lw=1.0))
-    ax.add_patch(Rectangle((-0.5, q - 0.5), q, q, fill=False, ec=GREEN, lw=1.0, ls="--"))
+    ax.add_patch(Rectangle((-0.35, q - 0.35), q - 0.3, q - 0.3, fill=False, ec=GREEN,
+                           lw=1.3, ls=(0, (4, 2))))
     ax.set_xticks([]); ax.set_yticks([])
     ax.set_xlabel(r"输入位置 $i$", fontsize=7.5)
     ax.set_ylabel(r"输出位置 $j$", fontsize=7.5)
     for s in ax.spines.values():
         s.set_color(MUTED); s.set_linewidth(0.6)
-    save(fig, "fig14-semiseparable.svg")
+    save(fig, "fig22-01-semiseparable.svg")
 
 
 # ================================================================

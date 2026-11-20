@@ -42,12 +42,12 @@ def fig_ssm_views():
         arrow(ax, x, 61.4, x, 53.6, color=c, lw=0.8)
 
     # 共同瓶颈
-    box(ax, 26, 12, 48, 16, "", fc="#f7f4ef", ec=ORANGE, lw=0.9)
+    box(ax, 21, 12, 58, 16, "", fc="#f7f4ef", ec=ORANGE, lw=0.9)
     label(ax, 50, 23.5, "三个视图的共同瓶颈", fs=8.8, weight="bold", color=ORANGE)
     label(ax, 50, 16.5, r"算出卷积核需要 $\bar A$ 的幂：朴素 $O(N^2L)$ 时间、$O(NL)$ 空间",
-          fs=7.8)
+          fs=7.4)
     arrow(ax, 50, 39.4, 50, 28.6, color=ORANGE, lw=0.8, ls=(0, (3, 2)))
-    save(fig, "fig02-ssm-views.svg")
+    save(fig, "fig02-01-ssm-views.svg")
 
 
 # ================================================================
@@ -97,8 +97,6 @@ def fig_discretization():
                 label=name)
     ax.set_xlabel(r"时间 $t$", fontsize=8)
     ax.set_ylabel("核的值", fontsize=8)
-    ax.legend(fontsize=6.6, frameon=False, ncol=3, loc="upper center",
-              bbox_to_anchor=(0.5, -0.24), columnspacing=1.0, handlelength=1.8)
     ax.grid(alpha=0.25, lw=0.5)
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
@@ -128,14 +126,18 @@ def fig_discretization():
         ax.loglog(dts, err[kind] + 1e-12, color=col, lw=1.1, ls=ls, label=name)
     ax.set_xlabel(r"步长 $\Delta$", fontsize=8)
     ax.set_ylabel("相对误差", fontsize=8)
-    ax.legend(fontsize=6.6, frameon=False, loc="upper left")
+    # 两张图共用左下角图例，右图不再重复标注，避免线压在文字上
     ax.grid(alpha=0.25, which="both", lw=0.5)
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
     ax.tick_params(labelsize=7)
 
-    fig.subplots_adjust(wspace=0.28, bottom=0.26)
-    save(fig, "fig03-discretization.svg")
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, fontsize=6.6, frameon=False, ncol=5,
+               loc="lower center", bbox_to_anchor=(0.5, -0.02),
+               columnspacing=1.0, handlelength=1.8)
+    fig.subplots_adjust(wspace=0.28, bottom=0.3)
+    save(fig, "fig02-02-discretization.svg")
 
 
 # ================================================================

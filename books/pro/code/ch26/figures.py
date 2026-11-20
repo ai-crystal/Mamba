@@ -28,7 +28,7 @@ def fig_heads():
             label(ax, x0 - 1.4, 70.5 - r * 13, lab, fs=7.2, ha="right", color=MUTED)
         label(ax, x0 + 9, 18, note, fs=6.8, color=MUTED)
     label(ax, 50, 4, "蓝：该参数在 head 间独立；灰：跨 head 共享", fs=7, color=MUTED)
-    save(fig, "fig17-heads.svg")
+    save(fig, "fig26-01-heads.svg")
 
 
 # ================================================================

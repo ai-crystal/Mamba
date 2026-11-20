@@ -25,12 +25,12 @@ def fig_s4_pipeline():
         label(ax, 67, y + 6, note, fs=7.2, ha="left", color=MUTED)
 
     for y in [78, 60, 42]:
-        arrow(ax, 50, y - 0.6, 50, y - 12.4, color=MUTED, lw=0.9)
+        arrow(ax, 50, y - 1.0, 50, y - 5.4, color=MUTED, lw=0.9)
 
     box(ax, 18, 5, 62, 11,
         r"$\tilde O(N+L)$ 时间、$O(N+L)$ 空间，达到下界 $\Omega(N+L)$",
         fc="#f7f7f7", ec=INK, fs=8)
-    save(fig, "fig09-s4-pipeline.svg")
+    save(fig, "fig10-01-s4-pipeline.svg")
 
 
 # ---------------------------------------------------------------- 主流程

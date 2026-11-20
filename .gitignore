@@ -10,6 +10,7 @@ books/build/out/
 books/build/vendor/
 books/*/build/out/
 *.tmp
+*.tmp.pdf
 *.log
 
 # 系统与编辑器

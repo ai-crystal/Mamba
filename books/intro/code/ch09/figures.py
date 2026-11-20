@@ -44,7 +44,7 @@ def fig_selection():
     ax.tick_params(labelsize=7)
 
     fig.subplots_adjust(hspace=0.22, left=0.06, right=0.98)
-    save(fig, "fig04-selection.svg")
+    save(fig, "fig09-01-selection.svg")
 
 
 FIGURES = ["fig_selection"]

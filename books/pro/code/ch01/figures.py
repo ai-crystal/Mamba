@@ -48,7 +48,7 @@ def fig_matrix_mixers():
             s.set_color(MUTED); s.set_linewidth(0.6)
         ax.set_xlabel(formula, fontsize=8, color=BLUE, labelpad=4)
     fig.subplots_adjust(wspace=0.18, bottom=0.2)
-    save(fig, "fig01-matrix-mixers.svg")
+    save(fig, "fig01-01-matrix-mixers.svg")
 
 
 # ================================================================

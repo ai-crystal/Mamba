@@ -38,7 +38,7 @@ def fig_ssd():
         yy = 68 - k * 15
         box(ax, 46, yy, 18, 11, tag, fc="white", ec=col, fs=7.2, color=col)
         label(ax, 66, yy + 5.5, formula, fs=6.6, ha="left", color=INK)
-    save(fig, "fig16-ssd.svg")
+    save(fig, "fig25-01-ssd.svg")
 
 
 # ================================================================

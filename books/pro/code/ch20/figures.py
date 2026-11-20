@@ -38,7 +38,7 @@ def fig_mamba_block():
     arrow(ax, 70.5, 64.4, 70.5, 61.4, color=ORANGE, ls=(0, (3, 2)), lw=0.7)
     label(ax, 22, 20, "门控分支", fs=6.6, color=MUTED, ha="center")
     label(ax, 60, 16.5, "输出 + 残差", fs=6.8, color=MUTED, ha="left")
-    save(fig, "fig23-mamba-block.svg")
+    save(fig, "fig20-01-mamba-block.svg")
 
 
 # ================================================================

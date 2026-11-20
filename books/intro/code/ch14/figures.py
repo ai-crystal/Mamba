@@ -31,7 +31,7 @@ def fig_timeline():
                 fontsize=8.6, color=INK, weight="bold")
         ax.text(x_line + 3.0, y - 1.4, note, ha="left", va="top",
                 fontsize=7.0, color=MUTED)
-    save(fig, "fig05-timeline.svg")
+    save(fig, "fig14-01-timeline.svg")
 
 
 FIGURES = ["fig_timeline"]

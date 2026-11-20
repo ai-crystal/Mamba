@@ -59,7 +59,7 @@ def fig_three_ways():
     ax.text(9.6, 5.0, "每个输出" + chr(10) + "回看全部历史", ha="center", va="center",
             fontsize=7.2, color=ORANGE, linespacing=1.5)
     ax.text(6, 0.9, "记住得最全，代价也最大", ha="center", fontsize=7.2, color=MUTED)
-    save(fig, "fig01-three-ways.svg")
+    save(fig, "fig01-01-three-ways.svg")
 
 
 # ---------------------------------------------------------------- 图 2-1

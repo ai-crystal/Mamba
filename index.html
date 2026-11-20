@@ -58,6 +58,14 @@
       hash: true,
       homepage: 'README.md',
       notFoundPage: false,
+      // 每册一个侧栏：章节页请求的 _sidebar.md 指到该册的侧栏
+      alias: {
+        '/books/intro/chapters/_sidebar.md': '/books/intro/_sidebar.md',
+        '/books/intro/front/_sidebar.md': '/books/intro/_sidebar.md',
+        '/books/pro/chapters/_sidebar.md': '/books/pro/_sidebar.md',
+        '/books/pro/front/_sidebar.md': '/books/pro/_sidebar.md',
+        '/books/pro/appendix/_sidebar.md': '/books/pro/_sidebar.md'
+      },
       search: {
         maxAge: 86400000,
         paths: 'auto',

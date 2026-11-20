@@ -1,0 +1,17 @@
+{
+  "title": "从 LSSL 到 Mamba-3",
+  "edition": "入门版",
+  "subtitle": "状态空间模型的故事与直觉",
+  "series": "STATE SPACE MODELS",
+  "author": "Dr. Dezeming",
+  "year": "2026",
+  "version": "2026 年 11 月",
+  "pdf": "mamba-intro.pdf",
+  "toc_sections": false,
+  "cover": "cover.jpg",
+  "backcover": "backcover.jpg",
+  "blurb": [
+    "这本书讲的是同一条线上的七个模型：HiPPO、LSSL、S4、S5、Mamba、Mamba-2、Mamba-3。它们都在回答一个问题，怎样把很长的历史压进一个固定大小的状态，还能把该记的东西记住。",
+    "全书不推公式，只讲每一步为什么被逼出来、代价落在哪里。读完能判断这些模型各自适合什么场景，也知道每个结论该回哪篇论文去查。"
+  ]
+}

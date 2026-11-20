@@ -35,7 +35,7 @@ def fig_masks():
         for s in ax.spines.values():
             s.set_color(MUTED); s.set_linewidth(0.6)
     fig.subplots_adjust(wspace=0.12)
-    save(fig, "fig19-masks.svg")
+    save(fig, "fig29-01-masks.svg")
 
 
 # ================================================================

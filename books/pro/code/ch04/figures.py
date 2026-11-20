@@ -41,7 +41,7 @@ def fig_hippo_measures():
         ax.tick_params(colors=MUTED, length=2)
     axes[0].set_ylabel("权重密度", fontsize=7.5, color=MUTED)
     fig.subplots_adjust(wspace=0.12)
-    save(fig, "fig04-hippo-measures.svg")
+    save(fig, "fig04-01-hippo-measures.svg")
 
 
 # ================================================================

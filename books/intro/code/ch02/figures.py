@@ -54,7 +54,7 @@ def fig_compress():
     for a in axes:
         a.tick_params(labelsize=7, colors=MUTED)
     fig.subplots_adjust(hspace=0.34, top=0.97, bottom=0.12, left=0.17, right=0.97)
-    save(fig, "fig02-compress.svg")
+    save(fig, "fig02-01-compress.svg")
 
 
 FIGURES = ["fig_compress"]

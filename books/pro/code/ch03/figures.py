@@ -18,7 +18,7 @@ def fig_layer_interface():
     arrow(ax, 54.4, 51, 61.6, 51)
     arrow(ax, 78.4, 51, 83.6, 51)
     label(ax, 50, 28, "输出 $(B,L,H)$，与 RNN / CNN / Transformer 的层接口一致", fs=7.2, color=MUTED)
-    save(fig, "fig24-layer.svg")
+    save(fig, "fig03-01-layer.svg")
 
 
 FIGURES = ['fig_layer_interface']

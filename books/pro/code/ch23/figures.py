@@ -36,7 +36,7 @@ def fig_contraction():
     arrow(ax, 88, 47.4, 88, 44.6, color=GREEN)
     label(ax, 57, 24, r"瓶颈：只有 $L$ 这一步同时含 $T$ 与 $S$", fs=7.2, color=ORANGE, ha="left")
     label(ax, 56, 11, r"$L$ 是因果掩码时，$LZ$ 就是沿序列的累积求和，$O(T)$", fs=7.4, color=GREEN)
-    save(fig, "fig15-contraction.svg")
+    save(fig, "fig23-01-contraction.svg")
 
 
 # ================================================================

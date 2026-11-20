@@ -27,7 +27,7 @@ def fig_arith():
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
     ax.tick_params(labelsize=7)
-    save(fig, "fig18-arith.svg")
+    save(fig, "fig31-01-arith.svg")
 
 
 # ================================================================

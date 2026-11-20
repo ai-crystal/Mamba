@@ -39,7 +39,7 @@ def fig_lssl_views():
     xs = np.linspace(0, L, 100)
     ax.plot(xs, 2 + 1.2 * np.sin(xs * 0.9) * np.exp(-xs / 6), color=GREEN, lw=1.3)
     ax.set_ylim(-1.0, H + 1.2)
-    save(fig, "fig06-lssl-views.svg")
+    save(fig, "fig07-01-lssl-views.svg")
 
 
 # ================================================================

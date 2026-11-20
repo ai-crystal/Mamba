@@ -32,7 +32,7 @@ def fig_hippo_flow():
 
     label(ax, 18, 52, "测度决定 $A$ 的形状：\n滑动窗口 → LegT\n指数衰减 → LagT\n缩放窗口 → LegS",
           fs=7.2, color=MUTED, ha="left")
-    save(fig, "fig05-hippo-flow.svg")
+    save(fig, "fig05-01-hippo-flow.svg")
 
 
 # ================================================================

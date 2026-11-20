@@ -47,7 +47,7 @@ def fig_selective():
         ax.set_xlabel(note, fontsize=7.2, color=MUTED, labelpad=4, linespacing=1.5)
         for s in ax.spines.values():
             s.set_color(MUTED); s.set_linewidth(0.6)
-    save(fig, "fig11-selective.svg")
+    save(fig, "fig17-01-selective.svg")
 
 
 # ================================================================
