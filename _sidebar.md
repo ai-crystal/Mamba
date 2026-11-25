@@ -1,9 +1,9 @@
-- [系列首页](README.md)
+- [系列首页](/README.md)
 
-- **入门版 · 故事与直觉**
-  - [本册首页与目录](books/intro/README.md)
-  - [从第 1 章开始读](books/intro/chapters/ch01.md)
+- **01　入门版**
+  - [本册首页](/books/intro/README.md)
+  - <a href="/output/state-space-models-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
 
-- **专业版 · 理论、算法与实现**
-  - [本册首页与目录](books/pro/README.md)
-  - [从第 1 章开始读](books/pro/chapters/ch01.md)
+- **02　专业版**
+  - [本册首页](/books/pro/README.md)
+  - <a href="/output/state-space-models-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>

@@ -1,9 +1,12 @@
 # 状态空间模型
 
-一套讲状态空间模型的书，分两本。《故事与直觉》讲动机与结论，《理论、算法与实现》讲推导与实现。
+> 从故事与直觉，到理论、算法与实现
 
-[入门版](books/intro/chapters/ch01.md) [专业版](books/pro/chapters/ch01.md)
+一套讲状态空间模型的书，分两本。两本覆盖同一批模型：HiPPO、LSSL、S4、S5、Mamba、Mamba-2、Mamba-3。入门版讲动机、直觉与结论，专业版讲推导、算法与实现。
 
-[入门版 PDF](output/state-space-models-intro.pdf ':ignore') [专业版 PDF](output/state-space-models-pro.pdf ':ignore')
+**Dr. Dezeming**　·　2026
 
-> 序列建模的核心问题只有一个，怎样用有限的存储记住任意长的历史。
+<p class="cover-links">
+<a href="#/books/intro/README">开始阅读</a>
+<a href="#/README">书目与下载</a>
+</p>
