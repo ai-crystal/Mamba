@@ -103,6 +103,14 @@ def check_config(rep: Report, name: str) -> tuple[dict, dict] | None:
         rep.err(f"{name}: pdf 只能写文件名，不要带目录（{pdf}）")
     if not pdf.endswith(".pdf"):
         rep.err(f"{name}: pdf 字段必须以 .pdf 结尾（{pdf}）")
+    if "volume" in meta:
+        try:
+            vol = int(meta["volume"])
+        except (TypeError, ValueError):
+            rep.err(f"{name}: volume 必须是整数（现在是 {meta['volume']!r}）")
+        else:
+            if not pdf.startswith(f"v{vol}-"):
+                rep.err(f"{name}: 输出文件名要带顺序前缀 v{vol}-（现在是 {pdf}）")
     for key in ("cover", "backcover"):
         img = meta.get(key)
         if img and not (book_dir / "images" / img).exists():
@@ -295,8 +303,12 @@ def check_md_links(rep: Report, path: Path) -> None:
             continue
         if not link.endswith(".md") and not link.endswith(".pdf"):
             continue
-        target = (path.parent / link).resolve()
-        if not target.exists() and not (ROOT / link).exists():
+        # 站内链接可能写成站点根路径（/books/...，docsify 用），也可能是相对本章的路径
+        if link.startswith("/"):
+            target = ROOT / link.lstrip("/")
+        else:
+            target = (path.parent / link).resolve()
+        if not target.exists() and not (ROOT / link.lstrip("/")).exists():
             line = text[: m.start()].count("\n") + 1
             rep.err(f"{rel(path)}:{line} 链接指向的文件不存在：{link}")
 
@@ -384,13 +396,16 @@ def check_pdfs(rep: Report, meta_by_book: dict[str, dict]) -> None:
         heads.discard("")
         if len(heads) < 3 or not any(h.startswith("第") for h in heads):
             rep.err(f"{name}: 页眉没有跟着章节变化（抽查到的只有 {sorted(heads)[:4]}）")
-        # 页码写在文件名前面（顶部下载行与表格行都这样写），取紧邻文件名的那个数
+        # README 表格里找“N 页”那一格（同一行还有 01/02 这种纯数字，不能只看数字）
         m = None
         for line in readme.splitlines():
-            idx = line.find(meta["pdf"])
-            if idx < 0:
+            if meta["pdf"] not in line:
                 continue
-            m = re.search(r"(\d+)\s*页", line[max(0, idx - 40):idx]) or m
+            for cell in line.split("|"):
+                cell_m = re.fullmatch(r"\s*(\d+)\s*页\s*", cell)
+                if cell_m:
+                    m = cell_m
+                    break
             if m:
                 break
         if not m:

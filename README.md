@@ -14,8 +14,8 @@
 
 | 册 | 书名 | 一句话 | 页数 | 在线阅读 | PDF |
 | --- | --- | --- | ---: | --- | --- |
-| 01 | [入门版](books/intro/README.md) | 故事与直觉 | 41 | [阅读](books/intro/README.md) | <a href="output/state-space-models-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
-| 02 | [专业版](books/pro/README.md) | 理论、算法与实现 | 363 | [阅读](books/pro/README.md) | <a href="output/state-space-models-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
+| 01 | [入门版](books/intro/README.md) | 故事与直觉 | 41 页 | [阅读](books/intro/README.md) | <a href="output/v1-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
+| 02 | [专业版](books/pro/README.md) | 理论、算法与实现 | 363 页 | [阅读](books/pro/README.md) | <a href="output/v2-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
 
 ## 怎么读
 

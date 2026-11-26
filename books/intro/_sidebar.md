@@ -18,4 +18,4 @@
 - [第 13 章　混合架构：为什么还留着注意力](/books/intro/chapters/ch13.md)
 - [第 14 章　怎么选，往哪走](/books/intro/chapters/ch14.md)
 
-- <a href="/output/state-space-models-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
+- <a href="/output/v1-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>

@@ -8,7 +8,7 @@
 
 共 14 章 · 41 页
 
-[从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/state-space-models-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
+[从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/v1-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 
 ## 怎么读
 
