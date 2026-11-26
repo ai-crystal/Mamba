@@ -44,4 +44,4 @@
   - [附录 B 论文清单与术语表](/books/pro/appendix/appB.md)
   - [附录 C 公式速查与符号表](/books/pro/appendix/appC.md)
 
-- <a href="/output/v2-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
+- <a href="https://ai-crystal.github.io/Mamba/output/v2-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>

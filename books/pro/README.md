@@ -8,7 +8,7 @@
 
 共 35 章 · 363 页
 
-[从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/v2-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
+[从第 1 章开始](chapters/ch01.md)　·　<a href="https://ai-crystal.github.io/Mamba/output/v2-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 
 ## 目录
 
