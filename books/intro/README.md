@@ -6,7 +6,7 @@
 
 全书不推公式。每一步都按同一顺序讲：上一代卡在哪里，这一代换了个什么问法，代价落在哪。读完能判断这些模型各自适合什么场景，也知道每个结论该回哪篇论文去查。
 
-共 14 章 · 41 页
+共 14 章 · 91 页
 
 [从第 1 章开始](chapters/ch01.md)　·　<a href="https://ai-crystal.github.io/Mamba/output/v1-intro.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 

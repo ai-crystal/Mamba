@@ -6,7 +6,7 @@
 
 第一篇建语言，连续时间系统与离散化，后面每一章都会用到。第二、三篇是地基层，HiPPO 与 LSSL。第四、五篇讲 S4 与它带出来的生态。第六到八篇是 Mamba 三代的递进。第九篇落地，实现细节与训练中的坑。
 
-共 35 章 · 363 页
+共 35 章 · 539 页
 
 [从第 1 章开始](chapters/ch01.md)　·　<a href="https://ai-crystal.github.io/Mamba/output/v2-pro.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 

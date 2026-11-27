@@ -518,9 +518,24 @@ def print_pdf(html_path: Path, pdf_path: Path, chrome: str, outline: bool = True
         cdp.send("Emulation.setEmulatedMedia", {"media": "print"}, sid)
         cdp.send("Page.navigate", {"url": "file:///" + html_path.as_posix().lstrip("/")}, sid)
         time.sleep(1.2)
-        cdp.send("Runtime.evaluate", {"expression":
-                 "document.fonts.ready.then(()=>Promise.all([...document.images].map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r}))))",
-                 "awaitPromise": True}, sid)
+        # 先等 load 事件（大文档解析/排版需要时间，早打印会截断），
+        # 再等字体与全部图片就位。之前只等字体与“当时已存在的”图片，
+        # 220k 字的专业版曾因此只印到第 160 页就退出。
+        wait_js = """
+        new Promise((resolve) => {
+          const done = () => {
+            const imgs = [...document.images].map(i => i.complete ? 0 :
+              new Promise(r => { i.onload = i.onerror = r; }));
+            Promise.all([document.fonts.ready, ...imgs])
+              .then(() => setTimeout(resolve, 400));
+          };
+          if (document.readyState === 'complete') { done(); }
+          else { window.addEventListener('load', done, { once: true }); }
+        })
+        """
+        cdp.send("Runtime.evaluate", {"expression": wait_js,
+                                      "awaitPromise": True,
+                                      "timeout": 180000}, sid)
         params = {
             "printBackground": True,
             "paperWidth": 8.27, "paperHeight": 11.69,
